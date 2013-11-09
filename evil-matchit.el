@@ -251,7 +251,38 @@
   evil-matchit-mode turn-on-evil-matchit-mode
   "Global minor mode to emulate matchit.vim")
 
+(setq evilmi-profiles '(web-mode
+                        (list
+                         (lambda () "DOCSTRING" (interactive) (message "web-mode0"))
+                         (lambda () "DOCSTRING" (interactive) (message "web-mode1"))
+                         (lambda () "DOCSTRING" (interactive) (message "web-mode2"))
+                         )
+                        emacs-lisp-mode
+                        (list
+                         (lambda () "DOCSTRING" (interactive) (message "emacs-lisp-mode0"))
+                         (lambda () "DOCSTRING" (interactive) (message "emacs-lisp-mode1"))
+                         (lambda () "DOCSTRING" (interactive) (message "emacs-lisp-mode2"))
+                         )
+                        ))
+(defun test ()
+  (interactive)
+  (message "hello world")
+  (let (profile )
+    (setq profile (plist-get evilmi-profiles major-mode))
+    (message "profile=%s" profile)
 
+    (setq fn0 (nth 0 profile))
+    (message "fn0=%s" fn0)
+    (funcall fn0)
+
+    (setq fn1 (nth 1 profile))
+    (message "fn1=%s" fn1)
+    (funcall fn1)
+    (message "fn0=%s" fn0)
+    (setq fn2 (nth 2 profile))
+    (message "fn2=%s" fn2)
+    (funcall fn2)
+  ))
 
 (provide 'evil-matchit)
 

@@ -269,18 +269,17 @@
   (message "hello world")
   (let (profile )
     (setq profile (plist-get evilmi-profiles major-mode))
-    (message "profile=%s" profile)
+    ;; (message "profile=%s" profile)
 
-    (setq fn0 (nth 0 profile))
-    (message "fn0=%s" fn0)
-    (funcall fn0)
+    ;; (setq fn0 (nth 0 profile))
+    ;; (message "fn0=%s" fn0)
+    ;; (funcall fn0)
 
-    (setq fn1 (nth 1 profile))
-    (message "fn1=%s" fn1)
-    (funcall fn1)
-    (message "fn0=%s" fn0)
-    (setq fn2 (nth 2 profile))
-    (message "fn2=%s" fn2)
+    ;; (setq fn1 (nth 1 profile))
+    ;; (message "fn1=%s" fn1)
+    ;; (funcall fn1)
+
+    (setq fn2 (nth 1 profile))
     (funcall fn2)
   ))
 

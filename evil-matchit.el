@@ -251,17 +251,35 @@
   evil-matchit-mode turn-on-evil-matchit-mode
   "Global minor mode to emulate matchit.vim")
 
+;; @see https://github.com/redguardtoo/evil-matchit/issues/5
+
+;; @return (list position_first_char tag_type  is_end_tag)
+;; tag_type could be 0 (not a tag), 1 (open tag), 2 (middle tag), 3 (close tag)
+(defun evilmi-cb-find-tag-at-current-line ()
+  (message "evilmi-cb-find-tag-at-current-line called")
+  (let ((rlt '(0 1 t)))
+    (message "rlt=%s" rlt)
+    rlt
+    )
+  )
+
+(defun evilmi-cb-find-matched ()
+  (message "evilmi-cb-find-matched called")
+  )
+
+(defun evilmi-cb-jump ()
+  (message "evilmi-cb-jump called")
+  )
+
 (setq evilmi-profiles '(web-mode
-                        (
-                         (lambda () "DOCSTRING" (interactive) (message "web-mode0"))
-                         (lambda () "DOCSTRING" (interactive) (message "web-mode1"))
-                         (lambda () "DOCSTRING" (interactive) (message "web-mode2"))
+                        (evilmi-cb-find-tag-at-current-line
+                         evilmi-cb-find-matched
+                         evilmi-cb-jump
                          )
                         emacs-lisp-mode
-                        (
-                         (lambda () "DOCSTRING" (interactive) (message "emacs-lisp-mode0"))
-                         (lambda () "DOCSTRING" (interactive) (message "emacs-lisp-mode1"))
-                         (lambda () "DOCSTRING" (interactive) (message "emacs-lisp-mode2"))
+                        (evilmi-cb-find-tag-at-current-line
+                         evilmi-cb-find-matched
+                         evilmi-cb-jump
                          )
                         ))
 (defun test ()
